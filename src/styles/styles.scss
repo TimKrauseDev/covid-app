@@ -1,0 +1,542 @@
+$lightBlue: #c9c9c9;
+$darkBlue: #43615c;
+$offWhite: #FAF9F9;
+
+@mixin heading-font {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  color: #444;
+}
+
+@mixin no-spacing {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin grid-col {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 10px;
+}
+
+/******************************** 
+
+LEGEND -
+1. Site
+2. Header
+3. Global Display
+4. Country Display
+5. Live Stat
+6. Search Page
+7. Country Card
+8. Stat Card
+9. Footer
+
+********************************/
+
+
+
+/* 
+  1. Site 
+*/
+
+body {
+  @include no-spacing;
+  background-color: $offWhite;
+}
+
+h1, h2, h3, p {
+  @include no-spacing;
+  @include heading-font;
+}
+
+h1 {
+  font-size: 1.3em;
+  letter-spacing: .1em;
+}
+
+h2 {
+  font-size: 0.9em;
+  letter-spacing: .03em;
+}
+
+h3 {
+  font-size: .7em; 
+  letter-spacing: .03em;
+}
+
+p {
+  font-size: .8em;
+  text-transform: none;
+}
+
+#app-content-wrapper {
+  display: grid;
+  grid-template-rows: 75px 1fr 75px;
+  height: 100vh;
+}
+
+/* 
+  2. Header 
+*/
+
+#header {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  background-color: $lightBlue;
+  border-bottom: 2px solid $darkBlue;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+#header-left, #header-center, #header-right {
+  width: 100%;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+}
+
+#header-left {
+  justify-content: flex-start;
+}
+
+#header-title {
+  cursor: pointer;
+  border: 2px solid #444;
+  padding: 8px 16px;
+}
+
+#header-center {
+  justify-content: center;
+  h1, h2 {
+    text-align: center;
+  }
+}
+
+#header-right {
+  justify-content: flex-end;
+}
+
+#header-right {
+  #search-countries {
+  padding: 5px 10px !important;
+  font-size: 14px;
+  }
+  #search-countries-label {
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .MuiInput-underline {
+    margin-top: 0px !important;
+  }
+  .MuiInputLabel-formControl {
+    transform: translate(0, 5px) scale(1) !important;
+  }
+  .MuiInputLabel-shrink {
+    transform: translate(0, -10px) scale(0.75) !important;
+  }
+}
+
+/*
+  3. Global Display
+*/
+
+
+#global-display-wrapper {
+  display: grid;
+  grid-template-rows: 120px auto 120px auto;
+  grid-gap: 10px;
+  width: calc(100% - 40px);
+  max-width: 1400px;
+  margin: 20px auto;
+}
+
+#global-display-header {
+  background-color: $lightBlue;
+  border: 1px solid $darkBlue;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+
+  #global-display-title {
+    text-align: center;
+  }
+  #global-display-population,
+  #global-display-cases {
+    text-align: center;
+    h1, h2 {
+      display: inline-block;
+      margin: 2px 10px;
+    }
+  }
+}
+
+#map-livecases-wrapper {
+  @include grid-col;
+}
+
+#global-map {
+  grid-column: span 8;
+  border: 1px solid $darkBlue;
+}
+
+
+#global-map path:focus {
+  outline: 0;
+}
+
+#global-live-cases {
+  grid-column: span 4;
+  border: 1px solid $darkBlue;
+}
+
+#stats-wrapper {
+  @include grid-col;
+}
+
+.stat-card {
+  grid-column: span 3;
+}
+
+@media only screen and (max-width: 770px) {
+  
+  #global-display-wrapper {
+    grid-template-rows: 120px auto 240px auto;
+
+  }
+  
+  #global-map, #global-live-cases {
+    grid-column: span 12;
+  }
+
+  .stat-card {
+    grid-column: span 6;
+  }
+}
+
+/*
+  4. Country Display
+*/
+#country-display-wrapper {
+  display: grid;
+  grid-template-rows: 120px auto 120px auto;
+  grid-gap: 10px;
+  width: calc(100% - 40px);
+  max-width: 1400px;
+  margin: 20px auto;
+}
+
+#country-display-header {
+  background-color: $lightBlue;
+  border: 1px solid $darkBlue;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+
+  #country-display-title {
+    text-align: center;
+  }
+  #country-display-population,
+  #country-display-cases {
+    text-align: center;
+    h1, h2 {
+      display: inline-block;
+      margin: 2px 10px;
+    }
+  }
+}
+
+#timeline-graphs-wrapper {
+  @include grid-col;
+}
+
+#timeline-graph-confirmed,
+#timeline-graph-deaths {
+  grid-column: span 6;
+  border: 1px solid $darkBlue;
+  display: grid;
+  grid-template-rows: 50px 1fr;
+
+  & h1 {
+    border: 1px solid $darkBlue;
+    background-color: $lightBlue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
+@media only screen and (max-width: 770px) {
+  
+  #country-display-wrapper {
+    grid-template-rows: 120px auto 240px auto;
+  }
+  
+  #timeline-graph-confirmed, 
+  #timeline-graph-deaths {
+    grid-column: span 12;
+  }
+
+  .stat-card {
+    grid-column: span 6;
+  }
+}
+
+/* 
+  5. Live Stat
+*/
+#live-stat-wrapper {
+  display: grid;
+  grid-template-rows: 50px 50px 1fr;
+}
+#live-stat-title {
+  border: 1px solid red;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $lightBlue;
+  border: 1px solid $darkBlue;
+  box-sizing: border-box;
+
+}
+
+#live-stat-dropdown {
+  height: 100% !important;
+}
+
+.select-box {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  color: #444;
+  font-family: 'Montserrat', sans-serif;
+
+  
+  &__current {
+    position: relative;
+    box-shadow: 0 15px 30px -10px transparentize(#444, 0.9);
+    cursor: pointer;
+    outline: none;
+    height: 100%;
+    
+    &:focus {
+      & + .select-box__list {
+        opacity: 1;
+        animation-name: none;
+        
+        .select-box__option {
+          cursor: pointer;
+        }
+      }
+      
+      .select-box__icon {
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
+  }
+  
+  &__icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 20px;
+    opacity: 0.3;
+    transition: 0.2s ease;
+  }
+  
+  &__value {
+    display: flex;
+  }
+  
+  &__input {
+    display: none;
+    
+    &:checked + .select-box__input-text {
+      display: block;
+    }
+  }
+  
+  &__input-text {
+    display: none;
+    width: 100%;
+    margin: 0;
+    padding: 15px;
+    background-color: $offWhite;
+  }
+  
+  &__list {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+    opacity: 0;
+    
+    animation-name: HideList;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: step-start;
+    box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
+  }
+  
+  &__option {
+    display: block;
+    padding: 15px;
+    background-color: $offWhite;
+    
+    &:hover,
+    &:focus {
+      color: $darkBlue;
+      background-color: #e6e6e6;
+    }
+  }
+}
+
+@keyframes HideList {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(0);
+  }
+}
+
+/*
+  6. Search Page
+*/
+
+
+#search-page-wrapper {
+  width: calc(100% - 40px);
+  max-width: 1400px;
+  margin: 20px auto;
+}
+
+#search-page-wrapper h2{
+  margin: 10px;
+}
+
+#search-results-list {
+  @include grid-col;
+}
+
+#search-result-item {
+  grid-column: span 3;
+  border: 1px solid $darkBlue;
+  background-color: $lightBlue;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+/* 7. Country Card */
+
+#country-card-wrapper {
+  display: grid;
+  height: 60px;
+  padding: 5px;
+  grid-template-columns: 60px 1fr;
+}
+
+#country-flag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#country-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  h2, h3 {
+    display: inline-block;
+  }
+}
+
+
+@media only screen and (max-width: 1200px) {
+  #search-result-item {
+    grid-column: span 6;
+  }
+
+}
+
+@media only screen and (max-width: 600px) {
+  #search-result-item {
+    grid-column: span 12;
+  }
+}
+
+/*
+  8. Stat Card 
+*/
+
+#stat-card-wrapper {
+  border: 1px solid $darkBlue;
+  border-top: 5px solid $darkBlue;
+  background-color: $lightBlue;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+#stat-card-wrapper p, 
+#stat-card-wrapper h1 {
+  margin: 3px;
+}
+
+/* 
+  9. Footer 
+*/
+#footer {
+  height: 75px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $lightBlue;
+  border-top: 2px solid $darkBlue;
+  box-sizing: border-box;
+
+  h2, p {
+    text-align: center;
+    padding: 2px;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+
+  #app-content-wrapper {
+    display: grid;
+    grid-template-rows: 175px 1fr 75px;
+    height: 100vh;
+  }
+
+  #header {
+    flex-direction: column;
+  }
+
+  #header-left, #header-right, #header-center {
+    justify-content: center;
+    padding: 5px;
+  }
+}
+
